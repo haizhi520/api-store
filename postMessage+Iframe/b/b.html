@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    hello b
+    <script>
+        console.log("hello this is b.")
+        /*
+         * 弹出页 popup 域名是<http://example.org>，以下是 script 标签中的代码：
+         */
+
+        //当 A 页面 postMessage 被调用后，这个 function 被 addEventListener 调用
+        function receiveMessage (event) {
+            // 我们能信任信息来源吗？
+            console.log(event,"收到的消息 event");
+            // if (event.origin !== "http://192.168.2.230:8084/a.html")
+            //     return;
+
+            // event.source 就当前弹出页的来源页面
+            // event.data 是 "hello there!"
+
+            // 假设你已经验证了所受到信息的 origin (任何时候你都应该这样做), 一个很方便的方式就是把 event.source
+            // 作为回信的对象，并且把 event.origin 作为 targetOrigin
+            event.source.postMessage("hi there yourself!  the secret response " +
+                "is: rheeeeet!",
+                event.origin);
+        }
+
+        window.addEventListener("message", receiveMessage, false);
+    </script>
+</body>
+
+</html>

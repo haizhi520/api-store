@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    hello e
+    
+    <script>
+        console.log("hello this is e")
+        /*
+         * A 窗口的域名是<http://example.com:8080>，以下是 A 窗口的 script 标签下的代码：
+         */
+        function receiveMessage (event) {
+            // 我们能相信信息的发送者吗？(也许这个发送者和我们最初打开的不是同一个页面).
+            // if (event.origin !== "http://example.org")
+            //     return;
+
+            // event.source 是我们通过 window.open 打开的弹出页面 popup
+            // event.data 是 popup 发送给当前页面的消息 "hi there yourself!  the secret response is: rheeeeet!"
+            console.log(event,"我是得到的信息");
+            document.write(event.data)
+        }
+        window.addEventListener("message", receiveMessage, false);
+    </script>
+
+
+
+</body>
+
+</html>

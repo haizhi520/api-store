@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    hello this is c.
+    <script>
+        console.log("hello this is c.",window.contentWindow)
+        /*
+         * 弹出页 popup 域名是<http://example.org>，以下是 script 标签中的代码：
+         */
+
+        //当 A 页面 postMessage 被调用后，这个 function 被 addEventListener 调用
+        function receiveMessage (event) {
+            // 我们能信任信息来源吗？
+            console.log(event,"收到的消息 event");
+            // if (event.origin !== "http://127.0.0.1:5500/a.html")
+            //     return;
+            // event.source.postMessage("hi there yourself!  the secret response " +
+            //     "is: rheeeeet!",
+            //     event.origin);
+        }
+        window.postMessage("hi there yourself!  the secret response") //自己发自己
+        window.addEventListener("message", receiveMessage, false);
+         
+    </script>
+</body>
+</html>
