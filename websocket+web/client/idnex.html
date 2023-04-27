@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="my-text" value="123"> <button onclick="webClick()">发送</button>
+    <div id="socket-list">
+
+    </div>
+
+    <script>
+        // Create WebSocket connection.
+        const socket = new WebSocket('ws://192.168.4.33:8001');
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            // socket.send('Hello Server!');
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            console.log('Message from server ', event.data);
+            let data = JSON.parse(event.data)
+            let msg = data.user + ":【" + data.type + "】:" + data.msg
+            addNode(msg);
+        });
+        function webClick () {
+            if (document.getElementById("my-text").value === "") {
+                alert("请先输入")
+                return
+            }
+            socket.send(document.getElementById("my-text").value);
+        }
+        function addNode (msg) {
+            console.log("hello world");
+            var p = document.createElement("p");
+            p.innerText=msg
+            document.getElementById("socket-list").appendChild(p)
+            
+        }
+    </script>
+</body>
+
+</html>
