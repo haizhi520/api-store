@@ -28,7 +28,6 @@ socket.addEventListener('open', function (event) {
 // Listen for messages websocket接受消息
 socket.addEventListener('message', async function (event) {
     /*拉流的效果*/
-    let msg = JSON.parse(event.data)
     // Receive answer from remote peer
     // Here you should implement your own signaling mechanism
     const { type, sdp, iceCandidate } = JSON.parse(event.data)
