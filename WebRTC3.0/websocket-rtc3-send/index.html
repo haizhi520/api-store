@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .border {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>WebRTC 屏幕共享的 Demo （分享端）</h1>
+    <button id="startBtn">Start Sharing</button>
+    <button id="stopBtn">Stop Sharing</button>
+
+    <div class="border">
+        <h2>你现在正在分享的</h2>
+        <video id="localVideo" autoplay playsinline muted style="width:300px;height:300px"></video>
+    </div>
+    <div class="border">
+        <h2>远端分享的</h2>
+        <video id="remoteVideo" autoplay playsinline muted style="width:300px;height:300px"></video>
+    </div>
+
+
+
+    <!-- <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script> -->
+    <script src="./rtc.js"></script>
+    <script src="./adapter-latest.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
