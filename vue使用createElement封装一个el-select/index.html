@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 引入样式 -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <el-button @click="open()">Button</el-button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="./index.js"></script>
+    <script type="module">
+      import CustomElSelect from "./index.js";
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue!",
+          selectedValue: null,
+          selectedOption: [
+            { label: "SDK", value: "SDK" },
+            { label: "GB28181-2016", value: "GB28181-2016" },
+          ],
+        },
+        components: {
+          CustomElSelect,
+        },
+        methods: {
+          open() {
+            const h = this.$createElement;
+
+            const self = this;
+            this.$msgbox({
+              title: "解码器管理-添加：选择类型",
+              message: h(CustomElSelect, {
+                props: {
+                  value: self.selectedValue,
+                },
+                on: {
+                  input: (value) => {
+                    console.log(value, "实际的值");
+                  },
+                },
+              }),
+              showCancelButton: true,
+              confirmButtonText: "确定",
+              cancelButtonText: "取消",
+            })
+              .then((action) => {
+                console.log("成功");
+              })
+              .catch((msg) => {
+                console.log("取消操作");
+              });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
